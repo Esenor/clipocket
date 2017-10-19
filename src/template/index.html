@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>ClipPocket</title>
+  <style>
+    #clipzone {
+      display: flex;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+
+<body>
+<textarea id="clipzone" name="clipzone" rows="40" cols="100" onkeyup="onChange();" onchange="onChange();"></textarea>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    function onChange() {
+      socket.emit('clip_update', document.getElementById("clipzone").value);
+    };
+    socket.on('clip_update', function(msg){
+      document.getElementById('clipzone').value = msg;
+    });
+  </script>
+
+</body>
+
+
+</html>

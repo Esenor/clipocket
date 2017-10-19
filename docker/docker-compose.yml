@@ -1,0 +1,11 @@
+version: '2'
+services:
+  clipocket:
+    container_name: clipocket
+    build: ..
+    ports:
+        - "8042:3000"
+    volumes:
+        - ../src/:/usr/src/app/src
+    command: ["npm", "start"]
+    
